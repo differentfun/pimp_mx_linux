@@ -54,6 +54,48 @@ sudo dpkg -i balena-etcher_2.1.2_amd64.deb
 echo "🔧 Fixing any missing dependencies..."
 sudo apt install -f -y
 
+# Download and install MeowSQL AppImage
+echo "⬇️ Downloading MeowSQL AppImage..."
+wget -O MeowSQL.AppImage https://github.com/ragnar-lodbrok/meow-sql/releases/download/v0.4.18-alpha/Linux_MeowSQL_0.4.18-x86_64.AppImage
+
+echo "📦 Installing MeowSQL to /opt..."
+sudo mv MeowSQL.AppImage /opt/MeowSQL.AppImage
+sudo chmod +x /opt/MeowSQL.AppImage
+
+# Create .desktop entry for menu integration
+echo "🖥️ Creating menu entry for MeowSQL..."
+cat <<EOF | sudo tee /usr/share/applications/meowsql.desktop > /dev/null
+[Desktop Entry]
+Name=MeowSQL
+Comment=Database client similar to DBeaver
+Exec=/opt/MeowSQL.AppImage
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=Development;Database;
+EOF
+
+# Download and install OpenShot AppImage
+echo "⬇️ Downloading OpenShot AppImage..."
+wget -O OpenShot.AppImage https://github.com/OpenShot/openshot-qt/releases/download/daily/OpenShot-v3.4.0-release-candidate-14124-6cea273b-0b018e34-x86_64.AppImage
+
+echo "📦 Installing OpenShot to /opt..."
+sudo mv OpenShot.AppImage /opt/OpenShot.AppImage
+sudo chmod +x /opt/OpenShot.AppImage
+
+# Create .desktop entry for menu integration
+echo "🖥️ Creating menu entry for OpenShot..."
+cat <<EOF | sudo tee /usr/share/applications/openshot.desktop > /dev/null
+[Desktop Entry]
+Name=OpenShot Video Editor
+Comment=Simple and powerful video editor
+Exec=/opt/OpenShot.AppImage
+Icon=video-x-generic
+Terminal=false
+Type=Application
+Categories=AudioVideo;Video;Editing;
+EOF
+
 # Clean up downloaded .deb files
 echo "🗑️ Cleaning up downloaded files..."
 rm -f steam.deb onlyoffice-desktopeditors_amd64.deb google-chrome-stable_current_amd64.deb
