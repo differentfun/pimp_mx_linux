@@ -57,7 +57,7 @@ sudo apt install -f -y
 # Clean up downloaded .deb files
 echo "🗑️ Cleaning up downloaded files..."
 rm -f steam.deb onlyoffice-desktopeditors_amd64.deb google-chrome-stable_current_amd64.deb
-rm -f xclicker_1.5.1_amd64.deb balena-etcher_2.1.2_amd64.deb
+rm -f xclicker_1.5.1_amd64.deb balena-etcher_2.1.2_amd64.deb megasync-Debian_12_amd64.deb
 
 # Install Flatpak and Bottles
 echo "📦 Installing Flatpak and Bottles..."
