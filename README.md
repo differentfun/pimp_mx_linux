@@ -28,7 +28,7 @@
 | Office         | ONLYOFFICE Desktop Editors                                                   |
 | Gaming         | Steam, XClicker (auto-clicker), Bottles (via Flatpak), DosBox, ScummVM       |
 | Multimedia     | VLC, Krita                                                                   |
-| Network\etc    | FileZilla, PuTTY, Deluge, Clipgrab                                           |
+| Network\etc    | FileZilla, PuTTY, Deluge, Clipgrab, MEGASync                                 |
 | System Tools   | BleachBit, Balena Etcher, Veracrypt, VirtualBox, VYM (mind mapping), xscreensaver-extra |
 | Fonts          | Noto Color Emoji                                                             |
 
