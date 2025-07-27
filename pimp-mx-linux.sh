@@ -32,6 +32,12 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 echo "📦 Installing Google Chrome..."
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
+# Download and install Google Chrome
+echo "⬇️ Downloading MEGASync..."
+wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb
+echo "📦 Installing MEGASync..."
+sudo dpkg -i megasync-Debian_12_amd64.deb
+
 # Download and install XClicker
 echo "⬇️ Downloading XClicker..."
 wget https://github.com/robiot/xclicker/releases/download/v1.5.1/xclicker_1.5.1_amd64.deb
