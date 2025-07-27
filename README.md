@@ -26,7 +26,7 @@
 |----------------|------------------------------------------------------------------------------|
 | Browsers       | Google Chrome                                                               |
 | Office         | ONLYOFFICE Desktop Editors                                                   |
-| Gaming         | Steam, XClicker (auto-clicker), Bottles (via Flatpak)                        |
+| Gaming         | Steam, XClicker (auto-clicker), Bottles (via Flatpak), DosBox, ScummVM       |
 | Multimedia     | VLC, Krita                                                                   |
 | Network\etc    | FileZilla, PuTTY, Deluge, Clipgrab                                           |
 | System Tools   | BleachBit, Balena Etcher, Veracrypt, VirtualBox, VYM (mind mapping), xscreensaver-extra |
