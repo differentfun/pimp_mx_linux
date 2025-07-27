@@ -22,15 +22,15 @@
 
 ## 📦 Apps Installed
 
-| Category        | Applications                                                                 |
-|----------------|------------------------------------------------------------------------------|
-| Browsers       | Google Chrome                                                               |
-| Office         | ONLYOFFICE Desktop Editors                                                   |
-| Gaming         | Steam, XClicker (auto-clicker), Bottles (via Flatpak), DosBox, ScummVM       |
-| Multimedia     | VLC, Krita                                                                   |
-| Network\etc    | FileZilla, PuTTY, Deluge, Clipgrab, MEGASync                                 |
-| System Tools   | BleachBit, Balena Etcher, Veracrypt, VirtualBox, VYM (mind mapping), xscreensaver-extra |
-| Fonts          | Noto Color Emoji                                                             |
+| Category        | Applications                                                                        |
+|----------------|--------------------------------------------------------------------------------------|
+| Browsers       | Google Chrome                                                                        |
+| Office         | ONLYOFFICE Desktop Editors                                                           |
+| Gaming         | Steam, XClicker (auto-clicker), Bottles (via Flatpak), DosBox, ScummVM               |
+| Multimedia     | VLC, Krita                                                                           |
+| Network\etc    | FileZilla, PuTTY, Deluge, Clipgrab, MEGASync                                         |
+| System Tools   | BleachBit, Balena Etcher, Veracrypt, VirtualBox, VYM, pulseaudio, xscreensaver-extra |
+| Fonts          | Noto Color Emoji                                                                     |
 
 ---
 
