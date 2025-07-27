@@ -32,7 +32,7 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 echo "📦 Installing Google Chrome..."
 sudo dpkg -i google-chrome-stable_current_amd64.deb
 
-# Download and install Google Chrome
+# Download and install MEGASync
 echo "⬇️ Downloading MEGASync..."
 wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb
 echo "📦 Installing MEGASync..."
