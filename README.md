@@ -64,7 +64,8 @@ Run the script:
 ./pimp-mx-linux.sh
 ```
 
-📌 Notes
+## 📌 Notes
+
 The script will automatically download .deb files from official sources.
 
 If you already have some of the apps installed, they will be skipped or updated accordingly.
