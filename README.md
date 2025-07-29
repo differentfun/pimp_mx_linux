@@ -45,18 +45,24 @@
 ## 🚀 Installation
 
 1. **Download the script:**
-
-$ `git clone https://github.com/YOUR_USERNAME/pimp-mx-linux.git`
-
-$ `cd pimp-mx-linux`
+```bash
+git clone https://github.com/YOUR_USERNAME/pimp-mx-linux.git
+```
+```bash
+cd pimp-mx-linux
+```
 
 Make it executable:
 
-$ `chmod +x pimp-mx-linux.sh`
+```bash
+chmod +x pimp-mx-linux.sh
+```
 
 Run the script:
 
-$ `./pimp-mx-linux.sh`
+```bash
+./pimp-mx-linux.sh
+```
 
 📌 Notes
 The script will automatically download .deb files from official sources.
