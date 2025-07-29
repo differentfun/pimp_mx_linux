@@ -13,6 +13,8 @@ sudo apt update
 # Install useful software and emoji font
 echo "📦 Installing apps and fonts..."
 sudo apt install -y fonts-noto-color-emoji krita filezilla putty vlc vym deluge virtualbox-qt bleachbit xscreensaver-data-extra veracrypt pulseaudio clipgrab dosbox scummvm
+echo "📦 Fixing VirtualBox No-USB Bug..."
+sudo usermod -aG vboxusers $USER
 
 # Download and install ONLYOFFICE
 echo "⬇️ Downloading ONLYOFFICE..."
