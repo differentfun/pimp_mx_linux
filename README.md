@@ -33,6 +33,11 @@
 | Fonts          | Noto Color Emoji                                                                     |
 
 ---
+<p align="center">
+  <img src="https://files.catbox.moe/32hhu7.png" alt="Alt text" width="300"/><br>
+  <em>Preview</em>
+</p>
+
 
 ## 📋 Requirements
 
