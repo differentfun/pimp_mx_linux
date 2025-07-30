@@ -10,6 +10,27 @@ sudo apt remove -y asunder strawberry transmission-qt libreoffice*
 echo "🔄 Updating package list..."
 sudo apt update
 
+# Install Wine Staging HQ
+echo "Removing existing Wine installations..."
+sudo apt remove --purge wine* libwine* -y
+sudo apt autoremove --purge -y
+
+echo "Adding i386 architecture..."
+sudo dpkg --add-architecture i386
+
+echo "Adding WineHQ GPG key..."
+sudo mkdir -pm755 /etc/apt/keyrings
+sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+
+echo "Adding WineHQ repo for Debian Bookworm..."
+sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
+
+echo "Updating APT..."
+sudo apt update
+
+echo "Installing Wine Staging..."
+sudo apt install --install-recommends winehq-staging -y
+
 # Install useful software and emoji font
 echo "📦 Installing apps and fonts..."
 sudo apt install -y fonts-noto-color-emoji krita filezilla putty vlc vym deluge virtualbox-qt bleachbit xscreensaver-data-extra veracrypt pulseaudio clipgrab dosbox scummvm
