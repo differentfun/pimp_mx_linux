@@ -12,7 +12,7 @@ SELECTION=$(zenity --list --title="MX PIMP - Select Software to Install" \
   TRUE "chrome" "Google Chrome" \
   TRUE "megasync" "MEGASync" \
   TRUE "xclicker" "XClicker Auto Clicker" \
-  TRUE "etcher" "Balena Etcher" \
+  TRUE "pi-imager" "Raspberry PI Imager" \
   TRUE "meowsql" "MeowSQL (AppImage)" \
   TRUE "openshot" "OpenShot Video Editor" \
   TRUE "bottles" "Bottles (via Flatpak)" \
@@ -199,12 +199,12 @@ if is_selected "xclicker"; then
   sudo dpkg -i xclicker_1.5.1_amd64.deb
 fi
 
-# Balena Etcher
-if is_selected "etcher"; then
-  echo "⬇️ Downloading Balena Etcher..."
-  wget https://github.com/balena-io/etcher/releases/download/v2.1.2/balena-etcher_2.1.2_amd64.deb
-  echo "📦 Installing Balena Etcher..."
-  sudo dpkg -i balena-etcher_2.1.2_amd64.deb
+# Raspberry PI Imager
+if is_selected "pi-imager"; then
+  echo "⬇️ Raspberry PI Imager..."
+  wget https://downloads.raspberrypi.com/imager/imager_latest_amd64.deb
+  echo "📦 Raspberry PI Imager..."
+  sudo dpkg -i imager_latest_amd64.deb
 fi
 
 # MeowSQL
@@ -254,7 +254,7 @@ fi
 # Clean up downloaded .deb files
 echo "🗑️ Cleaning up downloaded files..."
 rm -f steam.deb onlyoffice-desktopeditors_amd64.deb google-chrome-stable_current_amd64.deb
-rm -f xclicker_1.5.1_amd64.deb balena-etcher_2.1.2_amd64.deb megasync-Debian_12_amd64.deb
+rm -f xclicker_1.5.1_amd64.deb imager_latest_amd64.deb megasync-Debian_12_amd64.deb
 
 # Bottles installation
 if is_selected "bottles"; then
