@@ -31,6 +31,7 @@ SELECTION=$(zenity --list --title="MX PIMP - Select Software to Install" \
   TRUE "dosbox" "DOSBox" \
   TRUE "scummvm" "ScummVM" \
   TRUE "fonts-noto-color-emoji" "Emoji font" \
+  TRUE "xpad" "Xpad (sticky notes)" \
   --separator=":")
 
 # Exit if user cancels
@@ -262,6 +263,14 @@ if is_selected "bottles"; then
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   sudo flatpak install -y flathub com.usebottles.bottles
 fi
+
+
+# Xpad installation
+if is_selected "xpad"; then
+  echo "📦 Installing xpad (Sticky Notes)..."
+  sudo apt install -y xpad 
+fi
+
 
 # Final message
 echo ""
