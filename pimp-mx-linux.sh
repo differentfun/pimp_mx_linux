@@ -1,5 +1,52 @@
 #!/bin/bash
 
+# Display Zenity checklist with default selections
+SELECTION=$(zenity --list --title="MX PIMP - Select Software to Install" \
+  --text="Uncheck anything you don't want to install." \
+  --checklist \
+  --width=600 --height=600 \
+  --column="Selected" --column="Software" --column="Description" \
+  TRUE "wine" "Wine Staging HQ" \
+  TRUE "onlyoffice" "ONLYOFFICE Desktop Editors" \
+  TRUE "steam" "Steam Client" \
+  TRUE "chrome" "Google Chrome" \
+  TRUE "megasync" "MEGASync" \
+  TRUE "xclicker" "XClicker Auto Clicker" \
+  TRUE "etcher" "Balena Etcher" \
+  TRUE "meowsql" "MeowSQL (AppImage)" \
+  TRUE "openshot" "OpenShot Video Editor" \
+  TRUE "bottles" "Bottles (via Flatpak)" \
+  TRUE "krita" "Krita" \
+  TRUE "filezilla" "FileZilla" \
+  TRUE "putty" "PuTTY" \
+  TRUE "vlc" "VLC Media Player" \
+  TRUE "vym" "VYM (mind mapping)" \
+  TRUE "deluge" "Deluge BitTorrent client" \
+  TRUE "virtualbox" "VirtualBox" \
+  TRUE "bleachbit" "BleachBit (system cleaner)" \
+  TRUE "xscreensaver" "Xscreensaver Extra Data" \
+  TRUE "veracrypt" "VeraCrypt" \
+  TRUE "pulseaudio" "PulseAudio" \
+  TRUE "clipgrab" "ClipGrab (YouTube downloader)" \
+  TRUE "dosbox" "DOSBox" \
+  TRUE "scummvm" "ScummVM" \
+  TRUE "fonts-noto-color-emoji" "Emoji font" \
+  --separator=":")
+
+# Exit if user cancels
+if [ $? -ne 0 ]; then
+  echo "❌ Installation canceled."
+  exit 1
+fi
+
+# Parse the selected options
+IFS=":" read -ra SOFTWARE <<< "$SELECTION"
+
+# Function to check if a component is selected
+is_selected() {
+  [[ " ${SOFTWARE[@]} " =~ " $1 " ]]
+}
+
 echo "🚀 Starting PIMP for MX Linux..."
 
 # Remove unwanted packages
@@ -10,84 +57,166 @@ sudo apt remove -y asunder strawberry transmission-qt libreoffice*
 echo "🔄 Updating package list..."
 sudo apt update
 
-# Install Wine Staging HQ
-echo "Removing existing Wine installations..."
-sudo apt remove --purge wine* libwine* -y
-sudo apt autoremove --purge -y
+# Wine installation
+if is_selected "wine"; then
+  echo "Removing existing Wine installations..."
+  sudo apt remove --purge wine* libwine* -y
+  sudo apt autoremove --purge -y
 
-echo "Adding i386 architecture..."
-sudo dpkg --add-architecture i386
+  echo "Adding i386 architecture..."
+  sudo dpkg --add-architecture i386
 
-echo "Adding WineHQ GPG key..."
-sudo mkdir -pm755 /etc/apt/keyrings
-sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+  echo "Adding WineHQ GPG key..."
+  sudo mkdir -pm755 /etc/apt/keyrings
+  sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 
-echo "Adding WineHQ repo for Debian Bookworm..."
-sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
+  echo "Adding WineHQ repo for Debian Bookworm..."
+  sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bookworm/winehq-bookworm.sources
 
-echo "Updating APT..."
-sudo apt update
+  echo "Updating APT..."
+  sudo apt update
 
-echo "Installing Wine Staging..."
-sudo apt install --install-recommends winehq-staging -y
+  echo "Installing Wine Staging..."
+  sudo apt install --install-recommends winehq-staging -y
+fi
 
-# Install useful software and emoji font
-echo "📦 Installing apps and fonts..."
-sudo apt install -y fonts-noto-color-emoji krita filezilla putty vlc vym deluge virtualbox-qt bleachbit xscreensaver-data-extra veracrypt pulseaudio clipgrab dosbox scummvm
-echo "📦 Fixing VirtualBox No-USB Bug..."
-sudo usermod -aG vboxusers $USER
+# Individual app installations
+if is_selected "krita"; then
+  echo "📦 Installing Krita..."
+  sudo apt install -y krita
+fi
 
-# Download and install ONLYOFFICE
-echo "⬇️ Downloading ONLYOFFICE..."
-wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb
-echo "📦 Installing ONLYOFFICE..."
-sudo dpkg -i onlyoffice-desktopeditors_amd64.deb
+if is_selected "filezilla"; then
+  echo "📦 Installing FileZilla..."
+  sudo apt install -y filezilla
+fi
 
-# Download and install Steam
-echo "⬇️ Downloading Steam..."
-wget https://cdn.fastly.steamstatic.com/client/installer/steam.deb
-echo "📦 Installing Steam..."
-sudo dpkg -i steam.deb
+if is_selected "putty"; then
+  echo "📦 Installing PuTTY..."
+  sudo apt install -y putty
+fi
 
-# Download and install Google Chrome
-echo "⬇️ Downloading Google Chrome..."
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-echo "📦 Installing Google Chrome..."
-sudo dpkg -i google-chrome-stable_current_amd64.deb
+if is_selected "vlc"; then
+  echo "📦 Installing VLC..."
+  sudo apt install -y vlc
+fi
 
-# Download and install MEGASync
-echo "⬇️ Downloading MEGASync..."
-wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb
-echo "📦 Installing MEGASync..."
-sudo dpkg -i megasync-Debian_12_amd64.deb
+if is_selected "vym"; then
+  echo "📦 Installing VYM..."
+  sudo apt install -y vym
+fi
 
-# Download and install XClicker
-echo "⬇️ Downloading XClicker..."
-wget https://github.com/robiot/xclicker/releases/download/v1.5.1/xclicker_1.5.1_amd64.deb
-echo "📦 Installing XClicker..."
-sudo dpkg -i xclicker_1.5.1_amd64.deb
+if is_selected "deluge"; then
+  echo "📦 Installing Deluge..."
+  sudo apt install -y deluge
+fi
 
-# Download and install Balena Etcher
-echo "⬇️ Downloading Balena Etcher..."
-wget https://github.com/balena-io/etcher/releases/download/v2.1.2/balena-etcher_2.1.2_amd64.deb
-echo "📦 Installing Balena Etcher..."
-sudo dpkg -i balena-etcher_2.1.2_amd64.deb
+if is_selected "virtualbox"; then
+  echo "📦 Installing VirtualBox..."
+  sudo apt install -y virtualbox-qt
+  echo "📦 Fixing VirtualBox No-USB Bug..."
+  sudo usermod -aG vboxusers $USER
+fi
 
-# Fix missing dependencies
-echo "🔧 Fixing any missing dependencies..."
-sudo apt install -f -y
+if is_selected "bleachbit"; then
+  echo "📦 Installing BleachBit..."
+  sudo apt install -y bleachbit
+fi
 
-# Download and install MeowSQL AppImage
-echo "⬇️ Downloading MeowSQL AppImage..."
-wget -O MeowSQL.AppImage https://github.com/ragnar-lodbrok/meow-sql/releases/download/v0.4.18-alpha/Linux_MeowSQL_0.4.18-x86_64.AppImage
+if is_selected "xscreensaver"; then
+  echo "📦 Installing Xscreensaver Extra Data..."
+  sudo apt install -y xscreensaver-data-extra
+fi
 
-echo "📦 Installing MeowSQL to /opt..."
-sudo mv MeowSQL.AppImage /opt/MeowSQL.AppImage
-sudo chmod +x /opt/MeowSQL.AppImage
+if is_selected "veracrypt"; then
+  echo "📦 Installing VeraCrypt..."
+  sudo apt install -y veracrypt
+fi
 
-# Create .desktop entry for menu integration
-echo "🖥️ Creating menu entry for MeowSQL..."
-cat <<EOF | sudo tee /usr/share/applications/meowsql.desktop > /dev/null
+if is_selected "pulseaudio"; then
+  echo "📦 Installing PulseAudio..."
+  sudo apt install -y pulseaudio
+fi
+
+if is_selected "clipgrab"; then
+  echo "📦 Installing ClipGrab..."
+  sudo apt install -y clipgrab
+fi
+
+if is_selected "dosbox"; then
+  echo "📦 Installing DOSBox..."
+  sudo apt install -y dosbox
+fi
+
+if is_selected "scummvm"; then
+  echo "📦 Installing ScummVM..."
+  sudo apt install -y scummvm
+fi
+
+if is_selected "fonts-noto-color-emoji"; then
+  echo "📦 Installing emoji font..."
+  sudo apt install -y fonts-noto-color-emoji
+fi
+
+# ONLYOFFICE
+if is_selected "onlyoffice"; then
+  echo "⬇️ Downloading ONLYOFFICE..."
+  wget https://github.com/ONLYOFFICE/DesktopEditors/releases/latest/download/onlyoffice-desktopeditors_amd64.deb
+  echo "📦 Installing ONLYOFFICE..."
+  sudo dpkg -i onlyoffice-desktopeditors_amd64.deb
+fi
+
+# Steam
+if is_selected "steam"; then
+  echo "⬇️ Downloading Steam..."
+  wget https://cdn.fastly.steamstatic.com/client/installer/steam.deb
+  echo "📦 Installing Steam..."
+  sudo dpkg -i steam.deb
+fi
+
+# Google Chrome
+if is_selected "chrome"; then
+  echo "⬇️ Downloading Google Chrome..."
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  echo "📦 Installing Google Chrome..."
+  sudo dpkg -i google-chrome-stable_current_amd64.deb
+fi
+
+# MEGAsync
+if is_selected "megasync"; then
+  echo "⬇️ Downloading MEGAsync..."
+  wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb
+  echo "📦 Installing MEGAsync..."
+  sudo dpkg -i megasync-Debian_12_amd64.deb
+fi
+
+# XClicker
+if is_selected "xclicker"; then
+  echo "⬇️ Downloading XClicker..."
+  wget https://github.com/robiot/xclicker/releases/download/v1.5.1/xclicker_1.5.1_amd64.deb
+  echo "📦 Installing XClicker..."
+  sudo dpkg -i xclicker_1.5.1_amd64.deb
+fi
+
+# Balena Etcher
+if is_selected "etcher"; then
+  echo "⬇️ Downloading Balena Etcher..."
+  wget https://github.com/balena-io/etcher/releases/download/v2.1.2/balena-etcher_2.1.2_amd64.deb
+  echo "📦 Installing Balena Etcher..."
+  sudo dpkg -i balena-etcher_2.1.2_amd64.deb
+fi
+
+# MeowSQL
+if is_selected "meowsql"; then
+  echo "⬇️ Downloading MeowSQL AppImage..."
+  wget -O MeowSQL.AppImage https://github.com/ragnar-lodbrok/meow-sql/releases/download/v0.4.18-alpha/Linux_MeowSQL_0.4.18-x86_64.AppImage
+
+  echo "📦 Installing MeowSQL to /opt..."
+  sudo mv MeowSQL.AppImage /opt/MeowSQL.AppImage
+  sudo chmod +x /opt/MeowSQL.AppImage
+
+  echo "🖥️ Creating menu entry for MeowSQL..."
+  cat <<EOF | sudo tee /usr/share/applications/meowsql.desktop > /dev/null
 [Desktop Entry]
 Name=MeowSQL
 Comment=Database client similar to DBeaver
@@ -97,18 +226,19 @@ Terminal=false
 Type=Application
 Categories=Development;Database;
 EOF
+fi
 
-# Download and install OpenShot AppImage
-echo "⬇️ Downloading OpenShot AppImage..."
-wget -O OpenShot.AppImage https://github.com/OpenShot/openshot-qt/releases/download/daily/OpenShot-v3.4.0-release-candidate-14124-6cea273b-0b018e34-x86_64.AppImage
+# OpenShot
+if is_selected "openshot"; then
+  echo "⬇️ Downloading OpenShot AppImage..."
+  wget -O OpenShot.AppImage https://github.com/OpenShot/openshot-qt/releases/download/daily/OpenShot-v3.4.0-release-candidate-14124-6cea273b-0b018e34-x86_64.AppImage
 
-echo "📦 Installing OpenShot to /opt..."
-sudo mv OpenShot.AppImage /opt/OpenShot.AppImage
-sudo chmod +x /opt/OpenShot.AppImage
+  echo "📦 Installing OpenShot to /opt..."
+  sudo mv OpenShot.AppImage /opt/OpenShot.AppImage
+  sudo chmod +x /opt/OpenShot.AppImage
 
-# Create .desktop entry for menu integration
-echo "🖥️ Creating menu entry for OpenShot..."
-cat <<EOF | sudo tee /usr/share/applications/openshot.desktop > /dev/null
+  echo "🖥️ Creating menu entry for OpenShot..."
+  cat <<EOF | sudo tee /usr/share/applications/openshot.desktop > /dev/null
 [Desktop Entry]
 Name=OpenShot Video Editor
 Comment=Simple and powerful video editor
@@ -118,37 +248,21 @@ Terminal=false
 Type=Application
 Categories=AudioVideo;Video;Editing;
 EOF
+fi
 
 # Clean up downloaded .deb files
 echo "🗑️ Cleaning up downloaded files..."
 rm -f steam.deb onlyoffice-desktopeditors_amd64.deb google-chrome-stable_current_amd64.deb
 rm -f xclicker_1.5.1_amd64.deb balena-etcher_2.1.2_amd64.deb megasync-Debian_12_amd64.deb
 
-# Install Flatpak and Bottles
-echo "📦 Installing Flatpak and Bottles..."
-sudo apt install -y flatpak
-sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-sudo flatpak install -y flathub com.usebottles.bottles
+# Bottles installation
+if is_selected "bottles"; then
+  echo "📦 Installing Flatpak and Bottles..."
+  sudo apt install -y flatpak
+  sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  sudo flatpak install -y flathub com.usebottles.bottles
+fi
 
+# Final message
 echo ""
-echo "✅ Done! MX Linux has been pimped. You can now launch:"
-echo "  • Balena Etcher     → Create bootable USB drives"
-echo "  • BleachBit         → System cleaner (like CCleaner)"
-echo "  • Bottles           → Run Windows apps easily (via Flatpak)"
-echo "  • Chrome            → Your main web browser"
-echo "  • ClipGrab          → Download and convert YouTube videos"
-echo "  • DOSBox            → Run old DOS games/apps"
-echo "  • FileZilla         → FTP/SFTP file transfer client"
-echo "  • Krita             → Digital painting and illustration"
-echo "  • MEGAsync          → Cloud sync with MEGA"
-echo "  • MeowSQL           → Lightweight SQL database client"
-echo "  • ONLYOFFICE        → Alternative to LibreOffice"
-echo "  • OpenShot          → Simple and powerful video editor"
-echo "  • Putty             → SSH and telnet client"
-echo "  • ScummVM           → Play classic point-and-click adventure games"
-echo "  • Steam             → Gaming platform"
-echo "  • VirtualBox        → Run virtual machines"
-echo "  • XClicker          → Auto clicker for games or automation"
-echo ""
-echo "🎉 Enjoy your upgraded MX Linux!"
-
+echo "✅ Done! MX Linux has been pimped based on your selection. Enjoy!"
