@@ -25,19 +25,12 @@
 | Category        | Applications                                                                        |
 |----------------|--------------------------------------------------------------------------------------|
 | Browsers       | Google Chrome                                                                        |
-| Office         | ONLYOFFICE Desktop Editors                                                           |
+| Office         | ONLYOFFICE Desktop Editors, Xpad (Sticky Notes)                                      |
 | Gaming         | Steam, XClicker (auto-clicker), Bottles (via Flatpak), DosBox, ScummVM               |
 | Multimedia     | VLC, Krita, OpenShot, Wine-Staging                                                   |
 | Network\etc    | FileZilla, PuTTY, Deluge, Clipgrab, MEGASync, MeowSQL                                |
 | System Tools   | BleachBit, Balena Etcher, Veracrypt, VirtualBox, VYM, pulseaudio, xscreensaver-extra |
 | Fonts          | Noto Color Emoji                                                                     |
-
----
-
-## 🖼️ Screenshots
-<p align="center">
-  <img src="https://files.catbox.moe/32hhu7.png" alt="Alt text" width="300"/><br>
-</p>
 
 ---
 
