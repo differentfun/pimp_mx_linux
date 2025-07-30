@@ -27,7 +27,7 @@
 | Browsers       | Google Chrome                                                                        |
 | Office         | ONLYOFFICE Desktop Editors                                                           |
 | Gaming         | Steam, XClicker (auto-clicker), Bottles (via Flatpak), DosBox, ScummVM               |
-| Multimedia     | VLC, Krita, OpenShot                                                                 |
+| Multimedia     | VLC, Krita, OpenShot, Wine-Staging                                                   |
 | Network\etc    | FileZilla, PuTTY, Deluge, Clipgrab, MEGASync, MeowSQL                                |
 | System Tools   | BleachBit, Balena Etcher, Veracrypt, VirtualBox, VYM, pulseaudio, xscreensaver-extra |
 | Fonts          | Noto Color Emoji                                                                     |
