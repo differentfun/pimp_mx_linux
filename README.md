@@ -72,25 +72,4 @@ If you already have some of the apps installed, they will be skipped or updated 
 
 Bottles is installed via Flatpak and may require a reboot or logout to appear in your menu.
 
-✅ After Installation
-Once completed, you can start using:
-
-- Balena Etcher → to create bootable USB drives
-- BleachBit → clean and optimize your system
-- Bottles → to run Windows applications
-- ClipGrab → download and convert YouTube videos
-- DOSBox → run old DOS games and apps
-- FileZilla → FTP and SFTP file transfer
-- Google Chrome → for fast web browsing
-- Krita → digital painting and illustration
-- MEGAsync → cloud synchronization with MEGA
-- MeowSQL → lightweight SQL database client
-- ONLYOFFICE → as a modern LibreOffice alternative
-- OpenShot → simple and powerful video editor
-- PuTTY → SSH and telnet client
-- ScummVM → play classic point-and-click adventure games
-- Steam → for gaming
-- VirtualBox → run virtual machines
-- XClicker → for automation or gaming
-  
 🎉 Enjoy your upgraded MX Linux!
