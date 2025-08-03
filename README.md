@@ -25,7 +25,7 @@
 | Category        | Applications                                                                        |
 |----------------|--------------------------------------------------------------------------------------|
 | Browsers       | Google Chrome                                                                        |
-| Office         | ONLYOFFICE Desktop Editors, Xpad (Sticky Notes)                                      |
+| Office         | ONLYOFFICE Desktop Editors, Xpad (Sticky Notes), VSCodium                            |
 | Gaming         | Steam, XClicker (auto-clicker), Bottles (via Flatpak), DosBox, ScummVM               |
 | Multimedia     | VLC, Krita, OpenShot, Wine-Staging                                                   |
 | Network\etc    | FileZilla, PuTTY, Deluge, Clipgrab, MEGASync, MeowSQL                                |

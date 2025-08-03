@@ -31,6 +31,7 @@ SELECTION=$(zenity --list --title="MX PIMP - Select Software to Install" \
   TRUE "dosbox" "DOSBox" \
   TRUE "scummvm" "ScummVM" \
   TRUE "fonts-noto-color-emoji" "Emoji font" \
+  TRUE "vscodium" "VSCodium" \
   TRUE "xpad" "Xpad (sticky notes)" \
   --separator=":")
 
@@ -189,6 +190,20 @@ if is_selected "megasync"; then
   wget https://mega.nz/linux/repo/Debian_12/amd64/megasync-Debian_12_amd64.deb
   echo "📦 Installing MEGAsync..."
   sudo dpkg -i megasync-Debian_12_amd64.deb
+fi
+
+# VSCodium
+if is_selected "vscodium"; then
+  echo "⬇️ Enabling VSCodium Repo..."
+  wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+  
+  echo 'deb [arch=amd64,arm64 signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg] https://download.vscodium.com/debs vscodium main' \
+    | sudo tee /etc/apt/sources.list.d/vscodium.list
+
+  echo "📦 Installing VSCodium..."
+  sudo apt update && sudo apt install -y codium
 fi
 
 # XClicker
