@@ -57,6 +57,7 @@ sudo apt remove -y asunder strawberry transmission-qt libreoffice*
 
 # Update package list
 echo "🔄 Updating package list..."
+sudo dpkg --add-architecture i386
 sudo apt update
 
 # Wine installation
@@ -277,15 +278,15 @@ if is_selected "bottles"; then
   sudo apt install -y flatpak
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   sudo flatpak install -y flathub com.usebottles.bottles
+  sudo apt install -y libvkd3d1 libvkd3d-shader1 mesa-vulkan-drivers mesa-vulkan-drivers:i386 vulkan-tools
+  sudo usermod -aG render $USER
 fi
-
 
 # Xpad installation
 if is_selected "xpad"; then
   echo "📦 Installing xpad (Sticky Notes)..."
   sudo apt install -y xpad 
 fi
-
 
 # Final message
 echo ""
