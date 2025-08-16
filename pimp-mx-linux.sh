@@ -279,6 +279,7 @@ if is_selected "bottles"; then
   sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   sudo flatpak install -y flathub com.usebottles.bottles
   sudo apt install -y libvkd3d1 libvkd3d-shader1 mesa-vulkan-drivers mesa-vulkan-drivers:i386 vulkan-tools
+  sudo apt install -y libvulkan1 libvulkan1:i386 libgl1-mesa-dri libgl1-mesa-dri:i386 libasound2 libasound2:i386 gstreamer1.0-plugins-base gstreamer1.0-plugins-base:i386 gstreamer1.0-plugins-good gstreamer1.0-plugins-good:i386
   sudo usermod -aG render $USER
 fi
 
