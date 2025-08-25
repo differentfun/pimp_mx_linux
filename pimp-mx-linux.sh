@@ -204,7 +204,7 @@ if is_selected "vscodium"; then
     | sudo tee /etc/apt/sources.list.d/vscodium.list
 
   echo "📦 Installing VSCodium..."
-  sudo apt update && sudo apt install -y codium
+  sudo apt update && sudo apt install -y codium geany-plugins
 fi
 
 # XClicker
