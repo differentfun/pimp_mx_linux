@@ -46,7 +46,7 @@
 
 1. **Download the script:**
 ```bash
-git clone https://github.com/YOUR_USERNAME/pimp-mx-linux.git
+git clone https://github.com/differentfun/pimp-mx-linux.git
 ```
 ```bash
 cd pimp-mx-linux
